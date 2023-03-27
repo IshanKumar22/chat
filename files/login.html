@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+            crossorigin="anonymous"
+        />
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script defer>
+            $(document).ready(() => {
+                $("#username")[0].classList.add("form-control");
+                $("label[for='username']").insertAfter($("#username")[0]);
+            });
+        </script>
+        <title>Nickname</title>
+    </head>
+    <body class="text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+            <symbol id="arrow-right-short" viewBox="0 0 16 16">
+                <path
+                    fill-rule="evenodd"
+                    d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"
+                ></path>
+            </symbol>
+        </svg>
+        <main class="form-signin w-100 m-auto">
+            <form method="POST">
+                <h1>Enter a nickname to continue</h1>
+                {% if form.errors %}
+                <p style="color: red">{{ form.errors }}</p>
+                {% endif %} {{ form.csrf_token }}
+                <div class="form-floating">
+                    {{ form.username.label }} {{ form.username() }}
+                </div>
+                <br />
+                <div>
+                    <button
+                        type="submit"
+                        action="{{ url_for('chat') }}"
+                        class="btn btn-outline-dark btn-primary d-inline-flex align-items-center"
+                    >
+                        Login
+                        <svg class="bi ms-1" width="20" height="20">
+                            <use xlink:href="#arrow-right-short"></use>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </main>
+    </body>
+    <style>
+        .form-signin {
+            max-width: 750px;
+            padding: 15px;
+        }
+
+        .form-signin .form-floating:focus-within {
+            z-index: 2;
+        }
+
+        .form-signin input {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(145deg, #FDBB2D, #22C1C3);
+        }
+    </style>
+</html>
